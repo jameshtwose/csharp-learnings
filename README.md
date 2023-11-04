@@ -20,3 +20,12 @@ Based on the following microsoft tutorial: https://learn.microsoft.com/en-us/dot
 - `cd App`
 - `docker build -t dotnet-docker .`
 - `docker run --rm dotnet-docker`
+
+### Running the application (remote - openshift)
+- Install the openshift CLI (oc)
+- `oc login --token=<token> --server=<server>`
+- `oc project <project>`
+- `cd App`
+- `oc new-build --binary --name=dotnet-docker -l app=dotnet-docker` or
+- `oc new-app  --strategy=docker --binary --name dotnet-docker`
+- `oc start-build dotnet-docker --from-dir=. --follow`
